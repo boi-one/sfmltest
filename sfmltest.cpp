@@ -1,10 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Player.h"
 
 int main()
 {
     //SFML SCREEN COORDINATES////////////////////////\\
-    // 0, 0             screenwidth, 0               \\
+    // 0, 0                           screenwidth, 0 \\
     //                                               \\
     //                                               \\
     //                                               \\
@@ -20,12 +21,8 @@ int main()
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     sf::RenderWindow window(sf::VideoMode(640, 480), "sfmlol", sf::Style::Close | sf::Style::Resize);
-    sf::RectangleShape player(sf::Vector2f(50.0f, 50.0f));
-    player.setOrigin(25.0f, 25.0f);
-    sf::Texture playerTexture;
-    playerTexture.loadFromFile("radioactive.png");
-    player.setTexture(&playerTexture);
-
+   
+    sf::RectangleShape = Player::SetupPlayer(sf::Vector2f(50.f, 50.f), );
 
     while (window.isOpen())
     {
