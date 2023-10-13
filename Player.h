@@ -1,10 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-namespace sf
-{
-	class Player
-	{
-		public RectangleShape SetupPlayer(sf::RectangleShape& player, sf::Vector2f& dimentions, std::string& texturePath);
-	};
-}
 
+class Player : Entity
+{
+public:
+	static sf::RectangleShape SetupPlayer(sf::Vector2f& dimentions);
+	static sf::RectangleShape SetupPlayer(sf::Vector2f& dimentions, std::string& texturePath);
+	static void MovePlayer(sf::RectangleShape& player, float& speed, float& deltaTime);
+};
