@@ -3,7 +3,8 @@
 
 class Entity
 {
-	void Render(sf::Window& window,sf::Shape& object);
-	void Render(sf::Window& window, sf::Shape& object, sf::Texture& texture);
+public:
+	static void Render(sf::RenderWindow& window,sf::Shape& object);
+	static void Render(sf::RenderWindow& window, sf::Shape& object, sf::Texture& texture);
 };
 

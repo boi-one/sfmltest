@@ -3,6 +3,7 @@
 #include <SFML/System.hpp>
 #include <iostream>
 #include "GameLoop.h"
+#include "Entity.h"
 #include "Player.h"
 
 using namespace sf;
@@ -18,11 +19,23 @@ void GameLoop::Run()
 
 
     //player setup
-    Vector2f playerDimentions = Vector2f(50.f, 50.f);
-    std::string texturePath = ".\\radioactive.png";
-    RectangleShape player = Player::SetupPlayer(playerDimentions, texturePath);
-    player.setPosition(sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.9f));
+    Vector2f playerDimentions = Vector2f(150.f, 150.f);
+    RectangleShape player = Player::SetupPlayer(playerDimentions);
+    player.setPosition(sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.6f));
+    sf::Texture playerTexture;
+    playerTexture.loadFromFile("gorillafromgorillagrill.png");
     float speed = 300.f;
+    bool flipped = false;
+        //jump setup
+    bool spaceKey = false;
+    bool inAir = false;
+    float startSpeed = 0;
+    sf::Vector2f velocity;
+    float gravitationalForce;
+    sf::Vector2f gravity;
+    float time = 0;
+
+
 
     RectangleShape object(sf::Vector2f(50.f, 50.f));
     sf::Texture objectTexture;
@@ -58,11 +71,31 @@ void GameLoop::Run()
         {
             deltaTime = sfclock.restart().asSeconds();
 
+
+            //player movement
             if (Keyboard::isKeyPressed(Keyboard::Key::A))
+            {
+                if (!flipped)
+                {
+                    player.setScale(-player.getScale().x, player.getScale().y);
+                    flipped = true;
+                }
                 player.move(-1.f * (deltaTime * speed), 0.0f);
+            }
             if (Keyboard::isKeyPressed(Keyboard::Key::D))
+            {
+                if (flipped)
+                {
+                    player.setScale(-player.getScale().x, player.getScale().y);
+                    flipped = false;
+                }
                 player.move(1.f * (deltaTime * speed), 0.0f);
-        
+            }
+            if (Keyboard::isKeyPressed(Keyboard::Key::Space))
+                spaceKey = true;
+            else
+                spaceKey = false;
+            Player::Jump(player, deltaTime, spaceKey, inAir, startSpeed, velocity, gravitationalForce, gravity, time);
             camera.setCenter(player.getOrigin());
         }
 
@@ -77,10 +110,12 @@ void GameLoop::Run()
         }
 
         window.clear();
-        
-        player.setTexture(&objectTexture);
-        window.draw(object);
+        Entity::Render(window, player, playerTexture);
+        Entity::Render(window, object, objectTexture);
         window.display();
-        std::cout << deltaTime << std::endl;
+
+
+        std::cout << "X: " << player.getPosition().x << " Y: " << player.getPosition().y << std::endl;
+        //std::cout << deltaTime << std::endl;
     }
 }
