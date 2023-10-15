@@ -11,11 +11,15 @@ using namespace sf;
 void GameLoop::Run()
 {
     //frame setup
-    static RenderWindow window(VideoMode(640, 480), "sfmlol", Style::Close | Style::Resize);
+    RenderWindow window(VideoMode(640, 480), "sfmlol", Style::Close | Style::Resize);
+    View view(Vector2f(0.f, 0.f), Vector2f(512.f, 512.f));
+    uint16_t screenWidth = window.getSize().x;
+    uint16_t screenHeight = window.getSize().y;
     Clock sfclock;
     float deltaTime;
     bool windowFocused = true;
     sf::View camera;
+    std::cout << screenWidth << " " << screenHeight << std::endl;
 
 
     //player setup
@@ -78,6 +82,7 @@ void GameLoop::Run()
                 if (!flipped)
                 {
                     player.setScale(-player.getScale().x, player.getScale().y);
+                    player.setPosition(player.getPosition().x * 0.5f, player.getPosition().y);
                     flipped = true;
                 }
                 player.move(-1.f * (deltaTime * speed), 0.0f);
@@ -87,6 +92,7 @@ void GameLoop::Run()
                 if (flipped)
                 {
                     player.setScale(-player.getScale().x, player.getScale().y);
+                    player.setPosition(player.getOrigin().x * 0.5f, player.getOrigin().y);
                     flipped = false;
                 }
                 player.move(1.f * (deltaTime * speed), 0.0f);
@@ -110,12 +116,15 @@ void GameLoop::Run()
         }
 
         window.clear();
+        window.setView(view);
         Entity::Render(window, player, playerTexture);
         Entity::Render(window, object, objectTexture);
+        view.setCenter(player.getPosition());
         window.display();
 
 
-        std::cout << "X: " << player.getPosition().x << " Y: " << player.getPosition().y << std::endl;
+        //std::cout << "MousePos: X: " << Mouse::getPosition().x << " Y: " << Mouse::getPosition().y << std::endl;
+        //std::cout << "X: " << player.getPosition().x << " Y: " << player.getPosition().y << std::endl;
         //std::cout << deltaTime << std::endl;
     }
 }
