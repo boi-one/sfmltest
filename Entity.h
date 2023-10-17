@@ -4,7 +4,9 @@
 class Entity
 {
 public:
-	static void Render(sf::RenderWindow& window,sf::Shape& object);
-	static void Render(sf::RenderWindow& window, sf::Shape& object, sf::Texture& texture);
+	sf::RectangleShape body;
+	sf::Texture texture;
+	sf::RectangleShape Setup(sf::Vector2f& dimentions);
+	void Render(sf::RenderWindow& window);
 };
 

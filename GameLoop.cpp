@@ -20,35 +20,18 @@ void GameLoop::Run()
     bool windowFocused = true;
     sf::View camera;
     std::cout << screenWidth << " " << screenHeight << std::endl;
+    window.setFramerateLimit(60);
 
+    RectangleShape playerBody;
+    Player* player = new Player(playerBody, sf::Vector2f(150.f, 150.f), "gorillafromgorillagrill.png", 300.f); //problem with inheritance
 
-    //player setup
-    Vector2f playerDimentions = Vector2f(150.f, 150.f);
-    RectangleShape player = Player::SetupPlayer(playerDimentions);
-    player.setPosition(sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.6f));
-    sf::Texture playerTexture;
-    playerTexture.loadFromFile("gorillafromgorillagrill.png");
-    float speed = 300.f;
-    bool flipped = false;
-        //jump setup
-    bool spaceKey = false;
-    bool inAir = false;
-    float startSpeed = 0;
-    sf::Vector2f velocity;
-    float gravitationalForce;
-    sf::Vector2f gravity;
-    float time = 0;
-
-
-
+    ////////////////////////////////////////////////soon to be deleted
     RectangleShape object(sf::Vector2f(50.f, 50.f));
     sf::Texture objectTexture;
     objectTexture.loadFromFile("radioactive.png");
-
-    window.setFramerateLimit(60);
-
-    object.move(50.f, 50.f);
-
+    ////////////////////////////////////////////////
+    
+    //update loop
     while (window.isOpen())
     {
         //window events
@@ -75,51 +58,11 @@ void GameLoop::Run()
         {
             deltaTime = sfclock.restart().asSeconds();
 
-
-            //player movement
-            if (Keyboard::isKeyPressed(Keyboard::Key::A))
-            {
-                if (!flipped)
-                {
-                    player.setScale(-player.getScale().x, player.getScale().y);
-                    player.setPosition(player.getPosition().x * 0.5f, player.getPosition().y);
-                    flipped = true;
-                }
-                player.move(-1.f * (deltaTime * speed), 0.0f);
-            }
-            if (Keyboard::isKeyPressed(Keyboard::Key::D))
-            {
-                if (flipped)
-                {
-                    player.setScale(-player.getScale().x, player.getScale().y);
-                    player.setPosition(player.getOrigin().x * 0.5f, player.getOrigin().y);
-                    flipped = false;
-                }
-                player.move(1.f * (deltaTime * speed), 0.0f);
-            }
-            if (Keyboard::isKeyPressed(Keyboard::Key::Space))
-                spaceKey = true;
-            else
-                spaceKey = false;
-            Player::Jump(player, deltaTime, spaceKey, inAir, startSpeed, velocity, gravitationalForce, gravity, time);
-            camera.setCenter(player.getOrigin());
+            player->MovePlayer(deltaTime);
         }
-
-
-
-
-
-        if (Mouse::isButtonPressed(Mouse::Left))
-        {
-            Vector2i mousePos = Mouse::getPosition(window);
-            object.setPosition((float)mousePos.x, (float)mousePos.y);
-        }
-
         window.clear();
-        window.setView(view);
-        Entity::Render(window, player, playerTexture);
-        Entity::Render(window, object, objectTexture);
-        view.setCenter(player.getPosition());
+        //window.setView(view);
+        player->Render(window);
         window.display();
 
 

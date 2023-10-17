@@ -1,2 +1,10 @@
-﻿  GameLoop.cpp
-  sfmltest.vcxproj -> X:\.repositories\sfmltest\x64\Debug\sfmltest.exe
+﻿  Entity.cpp
+X:\.repositories\sfmltest\Entity.cpp(4,1): error C2011: 'Entity': 'class' type redefinition
+X:\.repositories\sfmltest\Entity.h(4,7): message : see declaration of 'Entity'
+  GameLoop.cpp
+X:\.repositories\sfmltest\GameLoop.cpp(26,32): error C2661: 'Player::Player': no overloaded function takes 4 arguments
+X:\.repositories\sfmltest\GameLoop.cpp(26,32): message : while trying to match the argument list '(sf::RectangleShape, sf::Vector2f, const char [28], float)'
+  Player.cpp
+X:\.repositories\sfmltest\Player.cpp(6,14): error C2011: 'Player': 'class' type redefinition
+X:\.repositories\sfmltest\Player.h(5,7): message : see declaration of 'Player'
+  Generating Code...

@@ -1,11 +1,24 @@
 #include "Entity.h"
 
-void Entity::Render(sf::RenderWindow& window, sf::Shape& object)
+class Entity
 {
-	window.draw(object);
-}
-void Entity::Render(sf::RenderWindow& window, sf::Shape& object, sf::Texture& texture)
-{
-	window.draw(object);
-	object.setTexture(&texture);
-}
+public:
+	sf::RectangleShape body;
+	sf::Texture texture;
+
+	explicit Entity(sf::RectangleShape& body, sf::Vector2f& dimentions, std::string& texturePath)
+	{
+		body = this->body;
+		body.setOrigin(body.getScale().x * 0.5f, body.getScale().y * 0.5f);
+		texture.loadFromFile(texturePath);
+	}
+
+	void Render(sf::RenderWindow& window)
+	{
+		window.draw(this->body);
+		this->body.setTexture(&texture);
+	}
+
+};
+
+
