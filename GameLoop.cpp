@@ -23,13 +23,11 @@ void GameLoop::Run()
     window.setFramerateLimit(60);
 
     RectangleShape playerBody;
-    Player* player = new Player(playerBody, sf::Vector2f(150.f, 150.f), "gorillafromgorillagrill.png", 300.f); //problem with inheritance
+    Entity* player = new Entity(playerBody, sf::Vector2f(150.f, 150.f));
 
-    ////////////////////////////////////////////////soon to be deleted
     RectangleShape object(sf::Vector2f(50.f, 50.f));
     sf::Texture objectTexture;
     objectTexture.loadFromFile("radioactive.png");
-    ////////////////////////////////////////////////
     
     //update loop
     while (window.isOpen())
@@ -58,7 +56,7 @@ void GameLoop::Run()
         {
             deltaTime = sfclock.restart().asSeconds();
 
-            player->MovePlayer(deltaTime);
+           // player->MovePlayer(deltaTime);
         }
         window.clear();
         //window.setView(view);

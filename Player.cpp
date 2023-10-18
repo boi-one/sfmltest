@@ -5,10 +5,11 @@ using namespace sf;
 
 class Player : public Entity
 {	
+public:
 	float movementSpeed = 0;
 	bool spriteFacingLeft = false;
 
-	Player(float& movementSpeed) : Entity()
+	Player(sf::RectangleShape& body, sf::Vector2f& dimentions, std::string& texturePath) : Entity(body, dimentions, texturePath)
 	{
 		movementSpeed = this->movementSpeed;
 	}
