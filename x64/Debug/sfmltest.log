@@ -1,11 +1,13 @@
 ﻿  Entity.cpp
-C:\Projects\sfmltest\Entity.cpp(4,1): error C2011: 'Entity': 'class' type redefinition
-C:\Projects\sfmltest\Entity.h(4,7): message : see declaration of 'Entity'
+X:\.repositories\sfmltest\Entity.cpp(4,1): error C2011: 'Entity': 'class' type redefinition
+X:\.repositories\sfmltest\Entity.h(4,7): message : see declaration of 'Entity'
   GameLoop.cpp
-C:\Projects\sfmltest\GameLoop.cpp(26,32): error C2661: 'Player::Player': no overloaded function takes 4 arguments
-C:\Projects\sfmltest\GameLoop.cpp(26,32): message : while trying to match the argument list '(sf::RectangleShape, sf::Vector2f, const char [12], float)'
+X:\.repositories\sfmltest\GameLoop.cpp(26,32): error C2665: 'Player::Player': no overloaded function could convert all the argument types
+X:\.repositories\sfmltest\Player.h(9,2): message : could be 'Player::Player(sf::RectangleShape &,sf::Vector2f &,std::string &,float &)'
+X:\.repositories\sfmltest\GameLoop.cpp(26,32): message : 'Player::Player(sf::RectangleShape &,sf::Vector2f &,std::string &,float &)': cannot convert argument 2 from 'sf::Vector2f' to 'sf::Vector2f &'
+X:\.repositories\sfmltest\GameLoop.cpp(26,57): message : A non-const reference may only be bound to an lvalue
+X:\.repositories\sfmltest\GameLoop.cpp(26,32): message : while trying to match the argument list '(sf::RectangleShape, sf::Vector2f, const char [12], float)'
   Player.cpp
-C:\Projects\sfmltest\Player.cpp(6,14): error C2011: 'Player': 'class' type redefinition
-C:\Projects\sfmltest\Player.h(5,7): message : see declaration of 'Player'
-  sfmltest.cpp
+X:\.repositories\sfmltest\Player.cpp(6,14): error C2011: 'Player': 'class' type redefinition
+X:\.repositories\sfmltest\Player.h(6,7): message : see declaration of 'Player'
   Generating Code...

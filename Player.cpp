@@ -6,6 +6,8 @@ using namespace sf;
 class Player : public Entity
 {	
 public:
+	using Entity::Entity;
+
 	float movementSpeed = 0;
 	bool spriteFacingLeft = false;
 
