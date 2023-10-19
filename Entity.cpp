@@ -6,7 +6,7 @@ public:
 	sf::RectangleShape body;
 	sf::Texture texture;
 
-	Entity(sf::RectangleShape& body, sf::Vector2f& dimentions/*, std::string& texturePath*/)
+	Entity(sf::RectangleShape& body, sf::Vector2f& dimensions, std::string& texturePath)
 	{
 		body = this->body;
 		body.setOrigin(body.getScale().x * 0.5f, body.getScale().y * 0.5f);

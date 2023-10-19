@@ -23,7 +23,7 @@ void GameLoop::Run()
     window.setFramerateLimit(60);
 
     RectangleShape playerBody;
-    Entity* player = new Entity(playerBody, sf::Vector2f(150.f, 150.f));
+    Player* player = new Player(playerBody, sf::Vector2f(150.f, 150.f), "gorilla.png", 300.f);
 
     RectangleShape object(sf::Vector2f(50.f, 50.f));
     sf::Texture objectTexture;

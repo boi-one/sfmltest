@@ -9,7 +9,7 @@ public:
 	float movementSpeed = 0;
 	bool spriteFacingLeft = false;
 
-	Player(sf::RectangleShape& body, sf::Vector2f& dimentions, std::string& texturePath) : Entity(body, dimentions, texturePath)
+	Player(sf::RectangleShape& body, sf::Vector2f& dimentions, std::string& texturePath, float& movementSpeed) : Entity(body, dimentions, texturePath)
 	{
 		movementSpeed = this->movementSpeed;
 	}
@@ -17,9 +17,9 @@ public:
 	void MovePlayer(float& deltaTime)
 	{
 		if(Keyboard::isKeyPressed(Keyboard::Key::A))
-			body.move(-1.f * movementSpeed, 0.f);
+			body.move(-1.f * (movementSpeed * deltaTime), 0.f);
 		if (Keyboard::isKeyPressed(Keyboard::Key::D))
-			body.move(1.f * movementSpeed, 0.f);
+			body.move(1.f * (movementSpeed * deltaTime), 0.f);
 	}
 
 };
