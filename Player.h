@@ -6,6 +6,10 @@
 class Player : public Entity
 {
 public:
+	float movementSpeed;
+	bool spriteFacingLeft;
+
+public:
 	Player(sf::RectangleShape& body, sf::Vector2f& dimentions, std::string& texturePath, float& movementSpeed);
 
 	void MovePlayer(float& deltaTime);

@@ -23,7 +23,10 @@ void GameLoop::Run()
     window.setFramerateLimit(60);
 
     RectangleShape playerBody;
-    Player* player = new Player(playerBody, sf::Vector2f(150.f, 150.f), "gorilla.png", 300.f);
+    Vector2f dimensions = sf::Vector2f(150.f, 150.f);
+    float playerMovementSpeed = 300.f;
+    std::string playerTexture = "gorillafromgorillagrill.png";
+    Player* player = new Player(playerBody, dimensions, playerTexture, playerMovementSpeed);
 
     RectangleShape object(sf::Vector2f(50.f, 50.f));
     sf::Texture objectTexture;

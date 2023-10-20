@@ -1,1 +1,0 @@
-X:\.repositories\sfmltest\x64\Release\sfmltest.exe

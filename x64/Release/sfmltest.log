@@ -1,8 +1,0 @@
-﻿  GameLoop.cpp
-  Player.cpp
-  sfmltest.cpp
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 80 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  sfmltest.vcxproj -> X:\.repositories\sfmltest\x64\Release\sfmltest.exe
