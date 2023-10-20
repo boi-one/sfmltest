@@ -1,2 +1,6 @@
-﻿  Player.cpp
+﻿  GameLoop.cpp
+X:\.repositories\sfmltest\GameLoop.cpp(30,83): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+X:\.repositories\sfmltest\GameLoop.cpp(30,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+X:\.repositories\sfmltest\GameLoop.cpp(37,77): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+X:\.repositories\sfmltest\GameLoop.cpp(37,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   sfmltest.vcxproj -> X:\.repositories\sfmltest\x64\Debug\sfmltest.exe

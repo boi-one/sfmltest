@@ -27,11 +27,15 @@ void GameLoop::Run()
     float playerMovementSpeed = 300.f;
     std::string playerTexture = "gorillafromgorillagrill.png";
     Player* player = new Player(playerBody, dimensions, playerTexture, playerMovementSpeed);
+    player->body.setPosition(window.getPosition().x * 0.5, window.getPosition().y * 0.5);
+    std::cout << "X: " << player->body.getPosition().x << " Y: " << player->body.getPosition().y << std::endl;
 
     RectangleShape object(sf::Vector2f(50.f, 50.f));
     sf::Texture objectTexture;
-    objectTexture.loadFromFile("radioactive.png");
-    
+    std::string image = "radioactive.png";
+    objectTexture.loadFromFile(image);
+    object.setPosition(window.getPosition().x * 0.5, window.getPosition().y * 0.5);
+
     //update loop
     while (window.isOpen())
     {
@@ -59,11 +63,13 @@ void GameLoop::Run()
         {
             deltaTime = sfclock.restart().asSeconds();
 
-           // player->MovePlayer(deltaTime);
+            player->MovePlayer(deltaTime);
+            //std::cout << "current player position" << player->body.getPosition().x << player->body.getPosition().y << std::endl;
         }
         window.clear();
-        //window.setView(view);
         player->Render(window);
+        object.setTexture(&objectTexture);
+        window.draw(object);
         window.display();
 
 

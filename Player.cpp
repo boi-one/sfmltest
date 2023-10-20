@@ -5,6 +5,8 @@ using namespace sf;
 
 Player::Player(sf::RectangleShape& body, sf::Vector2f& dimentions, std::string& texturePath, float& movementSpeed) : Entity(body, dimentions, texturePath), movementSpeed(movementSpeed)
 {
+	body.setPosition(0.f, 400.f);
+
 	std::cout << "player initialized " << body.getPosition().x  << ' ' << body.getPosition().y << std::endl;
 }
 
