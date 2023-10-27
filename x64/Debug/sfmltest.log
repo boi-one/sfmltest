@@ -1,6 +1,2 @@
 ﻿  GameLoop.cpp
-X:\.repositories\sfmltest\GameLoop.cpp(73,27): warning C4018: '<': signed/unsigned mismatch
-X:\.repositories\sfmltest\GameLoop.cpp(75,31): warning C4018: '<': signed/unsigned mismatch
-X:\.repositories\sfmltest\GameLoop.cpp(77,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-X:\.repositories\sfmltest\GameLoop.cpp(77,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   sfmltest.vcxproj -> X:\.repositories\sfmltest\x64\Debug\sfmltest.exe

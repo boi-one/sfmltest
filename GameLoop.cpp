@@ -27,7 +27,7 @@ void GameLoop::Run()
     sf::Sprite backgroundSprite;
     backgroundSprite.setTexture(background);
     background.setRepeated(true);
-    backgroundSprite.setTextureRect(sf::IntRect(0, 0, window.getSize().x, window.getSize().y));
+    backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1500, 1500) /*window.getSize().x, window.getSize().y)*/);
 
     //player setup
     Vector2f dimensions = sf::Vector2f(150.f, 150.f);
@@ -36,7 +36,9 @@ void GameLoop::Run()
     std::string playerTexturePath = "gorillafromgorillagrill.png";
     Player* player = new Player(playerBody, dimensions, playerTexturePath, playerMovementSpeed);
     player->body.setPosition(screenWidth * 0.5f, screenHeight * 0.65f);
+    player->body.setOrigin(player->body.getScale().x * 0.5f, player->body.getScale().y * 0.5f);
 
+    RectangleShape test(sf::Vector2f(50, 50));
 
     //update loop
     while (window.isOpen())
@@ -68,16 +70,19 @@ void GameLoop::Run()
             player->MovePlayer(deltaTime);
             view.setCenter(player->body.getPosition());
         }
+
         window.clear();
         window.setView(view);
-        for (int x = 0; x < window.getSize().x; x += background.getSize().x)
+
+        if (backgroundSprite.getPosition().x - player->body.getPosition().x > backgroundSprite.getScale().x * 0.5f)
         {
-            for (int y = 0; y < window.getSize().y; y += background.getSize().y)
-            {
-                backgroundSprite.setPosition(x, y);
-                window.draw(backgroundSprite);
-            }
+            backgroundSprite.setPosition(player->body.getPosition().x, backgroundSprite.getPosition().y);
         }
+
+        window.draw(backgroundSprite);
+
+        window.draw(test);
+        test.setPosition(player->body.getPosition());
         player->Render(window);
         window.display();
     }
